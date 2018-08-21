@@ -1,0 +1,61 @@
+<style>
+  .icon_middle {
+    display: block;
+    margin: 10px auto 0;
+    text-align: center;
+    font-size: 20px;
+  }
+</style>
+
+<div class="col-md-12">
+  <nav class="navbar navbar-dark bg-dark mb-5 navbar-expand-sm sticky-top">
+    <a class="navbar-brand" style="color: white; font-size: 30px;" [routerLink]="['/']">Brand</a>
+    <div class="navbar-expand mr-auto" *ngIf="mainS.isLoggedIn">
+      <div class="navbar-nav" [@fadeInAnimation]="active">
+        <a class="nav-item nav-link" [ngClass]="tab_num==1 ? 'active' : ''" (click)="tab_num=1" [routerLink]="['/home']">
+          <i class="material-icons icon_middle">home</i>
+          <span>Home</span>
+        </a>
+        <a class="nav-item nav-link" [ngClass]="tab_num==2 ? 'active' : ''" (click)="tab_num=2" [routerLink]="['/about']">
+          <i class="material-icons icon_middle">more</i>
+          <span>About</span>
+        </a>
+        <a class="nav-item nav-link" [ngClass]="tab_num==3 ? 'active' : ''" (click)="tab_num=3" [routerLink]="['/contact']">
+          <i class="material-icons icon_middle">contacts</i>
+          <span>Contact</span>
+        </a>
+
+        <!-- Dropdown -->
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" style="cursor: pointer;" [ngClass]="tab_num==4 ? 'active' : ''"
+            (click)="tab_num=4">
+            <i class="material-icons icon_middle">list</i>
+            More
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbardrop">
+            <a class="dropdown-item" [routerLink]="['/upload']">Upload</a>
+            <a class="dropdown-item" [routerLink]="['/home']">Link 2</a>
+            <a class="dropdown-item" [routerLink]="['/about']">Link 3</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-expand ml-auto navbar-nav">
+      <div class="navbar-nav">
+        <input class="form-control nav-item" type="text" placeholder="email-id" [(ngModel)]="authData.username" *ngIf="!mainS.isLoggedIn">
+        <input class="form-control nav-item" type="password" placeholder="password" [(ngModel)]="authData.password" *ngIf="!mainS.isLoggedIn">
+        <a class="nav-item nav-link" (click)="doLogin()" *ngIf="!mainS.isLoggedIn" style="cursor: pointer;">Login</a>
+        <a class="nav-item nav-link" (click)="doLogout()" *ngIf="mainS.isLoggedIn" style="cursor: pointer;">Logout</a>
+        <a class="nav-item nav-link" (click)="doRegister()" *ngIf="!mainS.isLoggedIn" style="cursor: pointer;">Register</a>
+        <!-- <a class="nav-item nav-link" (click)="doTest()" style="cursor: pointer;">Test</a> -->
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+  <div>
+    <span *ngFor="let m of animO; let i = index" [@fadeInAnimation]="i">
+      {{m.key}}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<!-- <input class="form-control" type="text" [(ngModel)]="capture" (keypress)="captureChange($event)"> -->
+<!-- <input class="form-control" type="text" [(ngModel)]="capture" (input)="captureChange($event)"> -->
+<input class="form-control" type="text" [(ngModel)]="capture.name" (ngModelChange)="captureChange($event)">
+{{capture | json}}
